@@ -1,0 +1,13 @@
+﻿.mat-mdc-checkbox {
+  .mdc-checkbox__ripple, .mat-mdc-checkbox-ripple {
+    display: none;
+  }
+}
+
+.mat-mdc-checkbox[ng-reflect-indeterminate=true],
+.mat-mdc-checkbox.mat-mdc-checkbox-checked, {
+  .mdc-checkbox__background {
+    border-color: #4A95F7 !important;
+    background-color: #4A95F7 !important;
+  }
+}

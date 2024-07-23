@@ -1,0 +1,72 @@
+﻿$buttonColor: transparent;
+$buttonHoverColor: #3C7CF81A;
+$buttonPressedColor: #194EB633;
+$buttonTextColor: #2F67D5;
+
+$buttonPrimaryColor: #2F67D5;
+$buttonPrimaryHoverColor: #3C7CF8;
+$buttonPrimaryPressedColor: #194EB6;
+$buttonPrimaryDisabledColor: #D8DEE9;
+$buttonPrimaryTextColor: #FFFFFF;
+
+button[mat-flat-button] {
+  box-sizing: content-box;
+  height: auto !important;
+  padding: 16px 22px !important;
+  border-radius: 37px;
+
+  span.mdc-button__label {
+    font-size: 18px;
+  }
+
+  @mixin button-theme($textColor ,$default, $hover, $pressed, $disabled: "") {
+    background-color: $default;
+
+    span.mdc-button__label {
+      color: $textColor;
+    }
+
+    &:hover {
+      background-color: $hover;
+    }
+
+    &:active {
+      background-color: $pressed;
+    }
+
+    @if $disabled != "" {
+      &:disabled {
+        background-color: $disabled;
+      }
+    }
+  }
+
+  @include button-theme($buttonTextColor, $buttonColor, $buttonHoverColor, $buttonPressedColor);
+
+  &.mat-primary {
+    @include button-theme($buttonPrimaryTextColor, $buttonPrimaryColor, $buttonPrimaryHoverColor, $buttonPrimaryPressedColor, $buttonPrimaryDisabledColor)
+  }
+}
+
+$iconColor: #304879;
+$iconColorHovered: #E2EEFF;
+$iconColorPressed: #B5D3FF;
+$iconColorDisabled: #A8B0BF;
+
+button[mat-icon-button] {
+  color: $iconColorDisabled;
+
+  &:hover {
+    color: $iconColor;
+    background: $iconColorHovered;
+  }
+
+  &:active {
+    color: $iconColor;
+    background: $iconColorPressed;
+  }
+
+  &:disabled {
+    color: $iconColorDisabled;
+  }
+}

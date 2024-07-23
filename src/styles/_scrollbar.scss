@@ -1,0 +1,13 @@
+﻿$scrollbar-size: 4px;
+$scrollbar-color: #D7E1ED;
+
+@mixin set-custom-scrollbar() {
+  &::-webkit-scrollbar {
+    width: $scrollbar-size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $scrollbar-size;
+    background: $scrollbar-color;
+  }
+}

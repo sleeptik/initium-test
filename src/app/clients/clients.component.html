@@ -1,0 +1,69 @@
+<h1 class="heading">Клиенты</h1>
+
+<div class="table-toolbar">
+  <button (click)="createClient()" mat-icon-button>
+    <mat-icon>add_box</mat-icon>
+  </button>
+  <button (click)="deleteClients()" mat-icon-button>
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+<table [dataSource]="dataSource" class="table-columns-sizes" mat-table matSort>
+  <ng-container matColumnDef="checkbox">
+    <th *matHeaderCellDef mat-header-cell>
+      <mat-checkbox
+        (change)="toggleAllClients()"
+        [checked]="selection.hasValue() && isAllClientsSelected()"
+        [indeterminate]="selection.hasValue() && !isAllClientsSelected()"></mat-checkbox>
+    </th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-checkbox
+        (change)="selection.toggle(element)"
+        [checked]="selection.isSelected(element)"
+      ></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Имя</th>
+    <td *matCellDef="let element" mat-cell>
+      <span (click)="editClient(element)" class="text-link">
+        {{ element.name }}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="surname">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>Фамилия</th>
+    <td *matCellDef="let element" mat-cell>
+      {{ element.surname }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th *matHeaderCellDef arrowPosition="before" class="right-aligned-sorted-header" mat-header-cell mat-sort-header>
+      E-mail
+    </th>
+    <td *matCellDef="let element" mat-cell>
+      {{ element.email }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th *matHeaderCellDef arrowPosition="before" class="right-aligned-sorted-header" mat-header-cell mat-sort-header>
+      Телефон
+    </th>
+    <td *matCellDef="let element" mat-cell>
+      {{ element.phone }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="space-filler">
+    <th *matHeaderCellDef mat-header-cell></th>
+    <td *matCellDef mat-cell></td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {MatIconRegistry} from "@angular/material/icon";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'initium-test';
+  constructor(iconRegistry: MatIconRegistry,
+  ) {
+    const alias = "material-symbols";
+    const fontClass = "material-symbols-rounded";
+
+    iconRegistry.registerFontClassAlias(alias, fontClass);
+    iconRegistry.setDefaultFontSetClass(fontClass, "mat-ligature-font");
+  }
 }

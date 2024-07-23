@@ -1,0 +1,57 @@
+﻿@use "./scrollbar" as sb;
+@use "./variables" as vars;
+
+.table-toolbar {
+  background-color: white;
+  border-top-left-radius: vars.$border-radius;
+  border-top-right-radius: vars.$border-radius;
+
+  button[mat-icon-button]:first-child {
+    margin-left: 17px;
+  }
+}
+
+table.mat-mdc-table {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  thead, tbody {
+    display: block;
+
+    tr {
+      display: table;
+      width: 100%;
+      height: 47px;
+
+      &:hover {
+        td {
+          background-color: rgb(143, 175, 255, 0.08);
+        }
+      }
+    }
+
+    th {
+      color: #2F4C97;
+    }
+
+    td {
+      color: #263238;
+    }
+  }
+
+  tbody {
+    overflow-y: auto;
+    @include sb.set-custom-scrollbar
+  }
+
+  th.right-aligned-sorted-header.mat-sort-header {
+    .mat-sort-header-container {
+      justify-content: end;
+    }
+  }
+
+  border-bottom-left-radius: vars.$border-radius;
+  border-bottom-right-radius: vars.$border-radius;
+}

@@ -1,0 +1,56 @@
+<div>
+  <div mat-dialog-title>
+    <h2 class="heading">{{ !!data ? "Редактирование" : "Новый клиент" }}</h2>
+  </div>
+
+  <form [formGroup]="clientDetailsForm" id="form" mat-dialog-content>
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Имя</mat-label>
+        <input formControlName="name" matInput>
+        <mat-error class="error" *ngIf="clientDetailsForm.hasError('minlength','name')">
+          Минимальное количество символов: 2
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Фамилия</mat-label>
+        <input formControlName="surname" matInput>
+        <mat-error class="error" *ngIf="clientDetailsForm.hasError('minlength','surname')">
+          Минимальное количество символов: 2
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="input">
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error class="error" *ngIf="clientDetailsForm.hasError('email','email')">
+          Некорректный адрес
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Телефон</mat-label>
+        <input formControlName="phone" matInput>
+        <mat-error class="error" *ngIf="clientDetailsForm.hasError('pattern','phone')">
+          Некорректный номер телефона
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div mat-dialog-actions align="end">
+    <button type="button" mat-flat-button (click)="close()">Отмена</button>
+    <button form="form" type="submit" color="primary"
+            (click)="save()"
+            [disabled]="clientDetailsForm.invalid"
+            mat-flat-button>Сохранить
+    </button>
+  </div>
+</div>
